@@ -8,7 +8,7 @@ int btn_ = 3;
 int btn1 = 5;
 int bzr = 6;
 int value = 0;
-int tempo;
+String s = "ms";
 LiquidCrystal lcd(12,13,8,9,10,11);
 
 void setup() {
@@ -31,7 +31,7 @@ void loop() {
 
 int controllaBottone(int value){
   if (value == HIGH){
-    eseguiTest(0);
+    eseguiTest(1000);
   }
 }
 
@@ -45,7 +45,6 @@ void eseguiTest(int tempo){
   digitalWrite(led,HIGH);
   int ris = contatempo(btn_,0);
   digitalWrite(led,LOW);
-  String s = "ms";
   lcd.print(ris + s);
   tempo = 1000;
   delay(tempo);
@@ -63,11 +62,11 @@ void eseguiTest(int tempo){
   lcd.print(ris + s);
   lcd.setCursor(0,1);
   lcd.print(ris_ + s);
-  if (ris<1 || ris_<1){
+  if (ris<50 || ris_<50){
     analogWrite(ledRgbR,255);
     lcd.clear();
-    lcd.print("TROPPO PRESTO");
-  }else if(ris<400 && ris_<400){
+    lcd.print("NON IMBROGLIARE");
+  }else if(ris<300 && ris_<300){
     analogWrite(ledRgbV,255);
   }else{
     analogWrite(ledRgbR,255);
@@ -88,5 +87,4 @@ void reset(){
   analogWrite(ledRgbV,0);
   analogWrite(ledRgbR,0);
   lcd.clear();
-  tempo = 1000;
 }
