@@ -8,6 +8,7 @@ int btn_ = 3;
 int btn1 = 5;
 int bzr = 6;
 int value = 0;
+int tempo;
 LiquidCrystal lcd(12,13,8,9,10,11);
 
 void setup() {
@@ -37,7 +38,7 @@ int controllaBottone(int value){
 void eseguiTest(int tempo){
   reset();
   lcd.print("Inizio Test");
-  delay(1000);
+  delay(tempo);
   lcd.clear();
   tempo = random(1,5000);
   delay(tempo);
@@ -46,15 +47,17 @@ void eseguiTest(int tempo){
   digitalWrite(led,LOW);
   String s = "ms";
   lcd.print(ris + s);
-  delay(1000);
+  tempo = 1000;
+  delay(tempo);
   lcd.clear();
   tempo = random(1,5000);
   delay(tempo);
   digitalWrite(bzr,LOW);
   int ris_ = contatempo(btn1,0);
   digitalWrite(bzr,HIGH);
+  tempo = 1000;
   lcd.print(ris_ + s);
-  delay(1000);
+  delay(tempo);
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print(ris + s);
@@ -85,4 +88,5 @@ void reset(){
   analogWrite(ledRgbV,0);
   analogWrite(ledRgbR,0);
   lcd.clear();
+  tempo = 1000;
 }
